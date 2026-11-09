@@ -1,0 +1,6 @@
+*.db
+.luacheckcache
+luacov.stats.out
+luacov.report.out
+*.rock
+lua_modules/

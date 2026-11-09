@@ -1,0 +1,5 @@
+describe("scaffold", function()
+  it("loads the registry", function()
+    assert.are.equal("0.1.0", require("tailclose.registry").VERSION)
+  end)
+end)

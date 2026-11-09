@@ -1,0 +1,22 @@
+#!/usr/bin/env lua
+-- The program entry point. It reads standard input only when reads_stdin says so.
+local dir = (arg[0] or ""):match("^(.*)[/\\][^/\\]*$") or "."
+package.path = dir .. "/../src/?.lua;" .. package.path
+
+local cli = require("tailclose.cli")
+
+local args = {}
+for i = 1, #arg do
+  args[i] = arg[i]
+end
+
+local input = ""
+if cli.reads_stdin(args) then
+  input = io.stdin:read("a") or ""
+end
+
+local result = cli.run(args, input)
+io.stdout:write(result.out)
+io.stderr:write(result.err)
+io.stdout:flush()
+os.exit(result.status)
